@@ -86,7 +86,7 @@ export const getActivityById = (id: string): Activity | undefined => {
 
 // Dummy child data
 export const CHILD = {
-  name: "Shenaya",
+  name: "Amara",
   level: 2,
   progress: 65, // percentage
   totalStars: 14

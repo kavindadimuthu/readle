@@ -40,7 +40,7 @@ export default function QuizStartPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <span>10 simple questions</span>
+              <span>5 simple questions</span>
             </li>
             <li className="flex items-center mb-3">
               <div className="bg-green-100 p-2 rounded-full mr-3">

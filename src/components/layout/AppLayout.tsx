@@ -17,7 +17,7 @@ export default function AppLayout({ role, children }: AppLayoutProps) {
       {role === 'parent' && <DashboardHeader userName="Kasun" />}
       {role === 'child' && (
         <ChildHeader 
-          childName="Shenaya" 
+          childName="Amara" 
           avatar="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop&crop=face" 
           level={1} 
           coins={50}

@@ -42,7 +42,7 @@ export default function PricingPage() {
             >
               <h3 className="text-xl font-bold text-gray-800 mb-4">Free</h3>
               <div className="mb-4">
-                <span className="text-4xl font-bold">$0</span>
+                <span className="text-4xl font-bold">LKR 0</span>
                 <span className="text-gray-500 ml-2">forever</span>
               </div>
               <p className="text-gray-600 mb-6">Perfect for trying out Readle</p>
@@ -82,7 +82,7 @@ export default function PricingPage() {
               </div>
               <h3 className="text-xl font-bold text-indigo-700 mb-4">Pro Monthly</h3>
               <div className="mb-4">
-                <span className="text-4xl font-bold">$14.99</span>
+                <span className="text-4xl font-bold">LKR 3490</span>
                 <span className="text-gray-500 ml-2">/month</span>
               </div>
               <p className="text-gray-600 mb-6">Unlock the full Readle experience</p>
@@ -127,11 +127,11 @@ export default function PricingPage() {
             >
               <h3 className="text-xl font-bold text-gray-800 mb-4">Pro Yearly</h3>
               <div className="mb-4">
-                <span className="text-4xl font-bold">$144</span>
+                <span className="text-4xl font-bold">LKR 29,900</span>
                 <span className="text-gray-500 ml-2">/year</span>
               </div>
               <div className="mb-6 flex items-center">
-                <p className="text-gray-600">$12/month, billed annually</p>
+                <p className="text-gray-600">~LKR  2500/month, billed annually</p>
                 <span className="ml-2 bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">SAVE 20%</span>
               </div>
               <hr className="my-6" />

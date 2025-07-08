@@ -1,13 +1,13 @@
 // filepath: d:\Readle\src\app\(authenticated)\child\[id]\page.tsx
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 
-// Dummy data for skills
+// Dummy data for skills - keeping this as it's not in the API
 const SKILLS = [
   { name: "Phonics", progress: 85, icon: "🔤" },
   { name: "Spelling", progress: 72, icon: "✍️" },
@@ -15,9 +15,9 @@ const SKILLS = [
   { name: "Comprehension", progress: 58, icon: "🧠" }
 ];
 
-// Define the Child type
+// Define the Child type to match MongoDB schema
 interface Child {
-  id: number;
+  _id: string;
   name: string;
   age: number;
   avatar: string;
@@ -34,73 +34,55 @@ interface Child {
   notes: string;
 }
 
-// Dummy data map for children with proper typing
-const CHILDREN_MAP: Record<string, Child> = {
-  "1": {
-    id: 1,
-    name: "Emma",
-    age: 8,
-    avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=150&h=150&fit=crop&crop=face",
-    level: 3,
-    progress: 78,
-    joinDate: "January 15, 2023",
-    completedActivities: 12,
-    lastActivity: {
-      name: "Beginning Sounds",
-      date: "June 22, 2023",
-      score: 92
-    },
-    interests: ["Animals", "Space", "Dinosaurs"],
-    notes: "Emma enjoys interactive activities and responds well to visual learning materials."
-  },
-  "2": {
-    id: 2,
-    name: "Noah",
-    age: 7,
-    avatar: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=150&h=150&fit=crop&crop=face",
-    level: 2,
-    progress: 65,
-    joinDate: "March 8, 2023",
-    completedActivities: 8,
-    lastActivity: {
-      name: "CVC Words",
-      date: "June 20, 2023",
-      score: 78
-    },
-    interests: ["Cars", "Superheroes", "Sports"],
-    notes: "Noah benefits from shorter, more frequent practice sessions. He enjoys rewards and badges."
-  },
-  "3": {
-    id: 3,
-    name: "Olivia",
-    age: 9,
-    avatar: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=150&h=150&fit=crop&crop=face",
-    level: 4,
-    progress: 92,
-    joinDate: "October 22, 2022",
-    completedActivities: 15,
-    lastActivity: {
-      name: "Simple Sentences",
-      date: "June 21, 2023",
-      score: 95
-    },
-    interests: ["Music", "Art", "Mythology"],
-    notes: "Olivia is a motivated reader who thrives with challenging content. Consider advancing her to higher levels."
-  }
-};
-
 export default function ChildProfilePage() {
   const params = useParams();
   const id = params.id as string;
   
-  const child = CHILDREN_MAP[id];
+  const [child, setChild] = useState<Child | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   
-  if (!child) {
+  useEffect(() => {
+    async function fetchChildData() {
+      try {
+        setIsLoading(true);
+        const response = await fetch(`/api/children/${id}`);
+        
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error("Child not found");
+          }
+          throw new Error("Failed to fetch child data");
+        }
+        
+        const data = await response.json();
+        console.log("Fetched child data:", data);
+        setChild(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An unknown error occurred");
+        console.error("Error fetching child:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    
+    fetchChildData();
+  }, [id]);
+  
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-[#f8f4ff] to-[#eef9ff] flex items-center justify-center p-6">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+      </div>
+    );
+  }
+  
+  if (error || !child) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-[#f8f4ff] to-[#eef9ff] flex items-center justify-center p-6">
         <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-8 text-center">
           <h1 className="text-2xl font-bold text-red-500 mb-4">Child Not Found</h1>
-          <p className="mb-6">Sorry, this child profile doesn&apos;t exist.</p>
+          <p className="mb-6">{error || "Sorry, this child profile doesn't exist."}</p>
           <Link 
             href="/children" 
             className="px-6 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors"
@@ -158,7 +140,7 @@ export default function ChildProfilePage() {
             
             <div className="flex justify-end">
               <Link
-                href={`/progress/${child.id}`}
+                href={`/progress/${child._id}`}
                 className="px-6 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors inline-flex items-center"
               >
                 <span>View Full Progress Report</span>
@@ -262,7 +244,7 @@ export default function ChildProfilePage() {
             Back to Children
           </Link>
           <Link
-            href={`/progress/${child.id}`}
+            href={`/progress/${child._id}`}
             className="px-6 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-colors inline-flex items-center"
           >
             Progress Report

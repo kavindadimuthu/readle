@@ -1,8 +1,8 @@
 [
   {
     "id": "user-1",
-    "email": "parent@m.com",
-    "password": "123",
+    "email": "kasun@gmail.com",
+    "password": "123456",
     "name": "Kasun Perera",
     "role": "parent",
     "preferences": {
@@ -12,9 +12,9 @@
   },
   {
     "id": "user-2",
-    "email": "child@m.com", 
+    "email": "amara@gmail.com", 
     "password": "123",
-    "name": "Shenaya Perera",
+    "name": "Amara Perera",
     "role": "child",
     "preferences": {
       "language": "en",

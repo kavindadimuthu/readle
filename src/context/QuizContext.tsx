@@ -44,32 +44,32 @@ const dummyQuestions: QuizQuestion[] = [
     id: 5,
     question: "Does your child read slowly compared to peers?",
     options: ["Never", "Rarely", "Sometimes", "Often", "Always"]
-  },
-  {
-    id: 6,
-    question: "Does your child avoid reading aloud?",
-    options: ["Never", "Rarely", "Sometimes", "Often", "Always"]
-  },
-  {
-    id: 7,
-    question: "Does your child have difficulty remembering what they've read?",
-    options: ["Never", "Rarely", "Sometimes", "Often", "Always"]
-  },
-  {
-    id: 8,
-    question: "Does your child frequently spell the same word differently?",
-    options: ["Never", "Rarely", "Sometimes", "Often", "Always"]
-  },
-  {
-    id: 9,
-    question: "Does your child struggle with organizing thoughts in writing?",
-    options: ["Never", "Rarely", "Sometimes", "Often", "Always"]
-  },
-  {
-    id: 10,
-    question: "Does your child have a family history of reading difficulties?",
-    options: ["No", "Not sure", "Yes"]
   }
+  // {
+  //   id: 6,
+  //   question: "Does your child avoid reading aloud?",
+  //   options: ["Never", "Rarely", "Sometimes", "Often", "Always"]
+  // },
+  // {
+  //   id: 7,
+  //   question: "Does your child have difficulty remembering what they've read?",
+  //   options: ["Never", "Rarely", "Sometimes", "Often", "Always"]
+  // },
+  // {
+  //   id: 8,
+  //   question: "Does your child frequently spell the same word differently?",
+  //   options: ["Never", "Rarely", "Sometimes", "Often", "Always"]
+  // },
+  // {
+  //   id: 9,
+  //   question: "Does your child struggle with organizing thoughts in writing?",
+  //   options: ["Never", "Rarely", "Sometimes", "Often", "Always"]
+  // },
+  // {
+  //   id: 10,
+  //   question: "Does your child have a family history of reading difficulties?",
+  //   options: ["No", "Not sure", "Yes"]
+  // }
 ];
 
 // Create context
